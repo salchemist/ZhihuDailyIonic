@@ -1,9 +1,19 @@
-<ion-view view-title="Playlists">
+<ion-view view-title="日报">
   <ion-content>
+    <ion-refresher
+      pulling-text="刷新"
+      on-refresh="doRefresh()">
+    </ion-refresher>
     <ion-list>
-      <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
-        {{playlist.title}}
+      <ion-item class="news_item" ng-repeat="story in playlists" href="#/app/playlists/{{story.id}}">
+        <div class="news_title">{{story.title}}</div>
+        <img  class="news_image" ng-src="{{story.images[0]}}" alt="">
       </ion-item>
+
     </ion-list>
+    <ion-infinite-scroll
+      on-infinite="loadMore()"
+      distance="1%">
+    </ion-infinite-scroll>
   </ion-content>
 </ion-view>

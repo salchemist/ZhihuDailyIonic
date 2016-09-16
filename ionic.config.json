@@ -1,4 +1,18 @@
 {
   "name": "ZhihuDaily",
-  "app_id": ""
+  "app_id": "",
+  "proxies": [
+    {
+      "path": "/api/4/news",
+      "proxyUrl": "http://news-at.zhihu.com/api/4/news"
+    }
+  ],
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ]
 }
