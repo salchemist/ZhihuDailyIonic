@@ -41,7 +41,8 @@ angular.module('starter.controllers', [])
     };
   })
 
-  .controller('PlaylistsCtrl', function ($scope, news) {
+  .controller('PlaylistsCtrl', function ($scope, news,$ionicScrollDelegate) {
+    $ionicScrollDelegate.$getByHandle('my-handle').scrollTop(100);
     var latestDate = new Date();
     function parseDate(date) {
       var year = date.getFullYear().toString();
@@ -50,7 +51,6 @@ angular.module('starter.controllers', [])
       return year+month+day;
     }
     function refresh() {
-      console.log('refresh');
       news.latest.get(function (news) {
         $scope.playlists = news.stories;
         $scope.sliders = news.top_stories;
@@ -58,6 +58,8 @@ angular.module('starter.controllers', [])
         $scope.$broadcast('scroll.infiniteScrollComplete');
       });
     }
+    $scope.whereAmI=function () {
+    };
     function loadMore() {
       var dayBefore = new Date();
       dayBefore.setDate(latestDate.getDate()-1);
@@ -76,7 +78,16 @@ angular.module('starter.controllers', [])
 
   })
 
-  .controller('PlaylistCtrl', function ($scope, $stateParams) {
+  .controller('PlaylistCtrl', function ($scope, $stateParams,news) {
+      console.log($stateParams.playlistId);
+      var vm = this;
+      vm.news_body = '';
+      vm.css_link  = '';
+      news.detail.get({id:$stateParams.playlistId},function (data) {
+        vm.news_body = data.body;
+        vm.css_link = data.css[0];
+        console.log(vm.css_link)
 
+      })
 
   });

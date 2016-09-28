@@ -20,8 +20,17 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
-.slide_img{
+.image-carousel {
+  height:auto;
+  img{
+    width:100%;
+  }
+}
 
+@media screen and (min-height: 500px) {
+  .image-carousel {
+    height: 120px;
+  }
 }
 .news_item {
   .item-content{
