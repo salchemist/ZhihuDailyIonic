@@ -3,8 +3,8 @@
   "app_id": "",
   "proxies": [
     {
-      "path": "/api/4/news",
-      "proxyUrl": "http://news-at.zhihu.com/api/4/news"
+      "path": "/api/4/",
+      "proxyUrl": "http://news-at.zhihu.com/api/4/"
     }
   ],
   "gulpStartupTasks": [

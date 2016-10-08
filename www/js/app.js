@@ -33,10 +33,11 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services','an
   })
 
   .state('app.search', {
-    url: '/search',
+    url: '/themeSingle/:themeListId',
     views: {
       'menuContent': {
-        templateUrl: 'templates/search.html'
+        templateUrl: 'templates/themeList.html',
+        controller:'ThemeListCtrl as theme'
       }
     }
   })

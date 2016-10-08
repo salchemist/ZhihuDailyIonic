@@ -1,5 +1,5 @@
 <ion-view view-title="日报">
-  <ion-content delegate-handle="PlaylistsCtrl">
+  <ion-content delegate-handle="PlaylistsCtrl" on-scroll="whereAmI()">
     <ion-refresher
       pulling-text="刷新"
       on-refresh="doRefresh()">
@@ -12,7 +12,7 @@
       </li>
     </ul>
 
-      <ion-list scrolly>
+      <ion-list  >
         <ion-item class="news_item"  ng-repeat="story in playlists" href="#/app/playlists/{{story.id}}">
           <div class="news_title">{{story.title}}</div>
           <img  class="news_image" ng-src="{{story.images[0]}}" alt="">

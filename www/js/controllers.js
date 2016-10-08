@@ -44,6 +44,7 @@ angular.module('starter.controllers', [])
   .controller('PlaylistsCtrl', function ($scope, news,$ionicScrollDelegate) {
     $ionicScrollDelegate.$getByHandle('my-handle').scrollTop(100);
     var latestDate = new Date();
+
     function parseDate(date) {
       var year = date.getFullYear().toString();
       var month =((date.getMonth()+1)<10?"0"+(date.getMonth()+1):(date.getMonth()+1)).toString() ;
@@ -59,6 +60,7 @@ angular.module('starter.controllers', [])
       });
     }
     $scope.whereAmI=function () {
+      console.log('me',$ionicScrollDelegate.getScrollPosition().top)
     };
     function loadMore() {
       var dayBefore = new Date();
@@ -77,17 +79,39 @@ angular.module('starter.controllers', [])
     refresh();
 
   })
+  .controller('menuCtrl',function (themes) {
+     var vm = this;
+    vm.themes = [];
+    themes.all.get(function (themes) {
+      console.log(themes);
+      vm.themes = themes.others;
 
+    });
+
+
+  })
   .controller('PlaylistCtrl', function ($scope, $stateParams,news) {
-      console.log($stateParams.playlistId);
-      var vm = this;
-      vm.news_body = '';
-      vm.css_link  = '';
-      news.detail.get({id:$stateParams.playlistId},function (data) {
-        vm.news_body = data.body;
-        vm.css_link = data.css[0];
-        console.log(vm.css_link)
+  console.log($stateParams.playlistId);
+  var vm = this;
+  vm.news_body = '';
+  vm.css_link  = '';
+  news.detail.get({id:$stateParams.playlistId},function (data) {
+    vm.news_body = data.body;
+    vm.css_link = data.css[0];
+    console.log(vm.css_link)
 
-      })
+  })
 
-  });
+})
+.controller('ThemeListCtrl', function ($scope, $stateParams,themes) {
+  var vm = this;
+  vm.title = '';
+  vm.themesList = [];
+  themes.detail.get({id:$stateParams.themeListId},function (detail) {
+    vm.title= detail.name;
+    vm.themesList= detail.stories;
+    console.log(detail)
+
+  })
+
+});

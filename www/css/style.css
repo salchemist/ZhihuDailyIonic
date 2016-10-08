@@ -1,1 +1,9 @@
 /* Empty. Add your own CSS if you like */
+[nav-bar-transition="ios"] [nav-bar="active"] .bar,
+[nav-bar-transition="ios"] [nav-bar="entering"] .bar,
+.bar.bar-stable{
+  background: #4b8bf4;
+}
+.bar.bar-stable .title{
+  color: #ffffff;
+}
