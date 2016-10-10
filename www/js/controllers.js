@@ -41,16 +41,17 @@ angular.module('starter.controllers', [])
     };
   })
 
-  .controller('PlaylistsCtrl', function ($scope, news,$ionicScrollDelegate) {
-    $ionicScrollDelegate.$getByHandle('my-handle').scrollTop(100);
+  .controller('PlaylistsCtrl', function ($scope, news) {
+
     var latestDate = new Date();
 
     function parseDate(date) {
       var year = date.getFullYear().toString();
-      var month =((date.getMonth()+1)<10?"0"+(date.getMonth()+1):(date.getMonth()+1)).toString() ;
-      var day = (date.getDate()<10?"0"+date.getDate():date.getDate()).toString();
-      return year+month+day;
+      var month = ((date.getMonth() + 1) < 10 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1)).toString();
+      var day = (date.getDate() < 10 ? "0" + date.getDate() : date.getDate()).toString();
+      return year + month + day;
     }
+
     function refresh() {
       news.latest.get(function (news) {
         $scope.playlists = news.stories;
@@ -59,14 +60,12 @@ angular.module('starter.controllers', [])
         $scope.$broadcast('scroll.infiniteScrollComplete');
       });
     }
-    $scope.whereAmI=function () {
-      console.log('me',$ionicScrollDelegate.getScrollPosition().top)
-    };
+
     function loadMore() {
       var dayBefore = new Date();
-      dayBefore.setDate(latestDate.getDate()-1);
+      dayBefore.setDate(latestDate.getDate() - 1);
       latestDate = dayBefore;
-      news.before.get({date:parseDate(dayBefore)},function (news) {
+      news.before.get({date: parseDate(dayBefore)}, function (news) {
         news.stories.forEach(function (story) {
           $scope.playlists.push(story);
         });
@@ -74,13 +73,14 @@ angular.module('starter.controllers', [])
         console.log(news);
       })
     }
+
     $scope.doRefresh = refresh;
     $scope.loadMore = loadMore;
     refresh();
 
   })
-  .controller('menuCtrl',function (themes) {
-     var vm = this;
+  .controller('menuCtrl', function (themes) {
+    var vm = this;
     vm.themes = [];
     themes.all.get(function (themes) {
       console.log(themes);
@@ -90,28 +90,31 @@ angular.module('starter.controllers', [])
 
 
   })
-  .controller('PlaylistCtrl', function ($scope, $stateParams,news) {
-  console.log($stateParams.playlistId);
-  var vm = this;
-  vm.news_body = '';
-  vm.css_link  = '';
-  news.detail.get({id:$stateParams.playlistId},function (data) {
-    vm.news_body = data.body;
-    vm.css_link = data.css[0];
-    console.log(vm.css_link)
+  .controller('PlaylistCtrl', function ($scope, $stateParams, news) {
+
+    var vm = this;
+    vm.news_body = '';
+    vm.css_link = '';
+    vm.image = ' ';
+    vm.description = '';
+    console.log();
+    news.detail.get({id: $stateParams.playlistId}, function (data) {
+      vm.news_body = data.body;
+      vm.css_link = data.css[0];
+      vm.image = data.image;
+      vm.description = data.title;
+      console.log(data)
+
+    })
 
   })
-
-})
-.controller('ThemeListCtrl', function ($scope, $stateParams,themes) {
-  var vm = this;
-  vm.title = '';
-  vm.themesList = [];
-  themes.detail.get({id:$stateParams.themeListId},function (detail) {
-    vm.title= detail.name;
-    vm.themesList= detail.stories;
-    console.log(detail)
-
-  })
-
-});
+  .controller('ThemeListCtrl', function ($scope, $stateParams, themes) {
+    var vm = this;
+    vm.title = '';
+    vm.themesList = [];
+    themes.detail.get({id: $stateParams.themeListId}, function (detail) {
+      vm.title = detail.name;
+      vm.themesList = detail.stories;
+      console.log(detail)
+    })
+  });

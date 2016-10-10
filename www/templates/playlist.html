@@ -1,6 +1,26 @@
-<ion-view view-title="Playlist">
+<ion-view view-title="{{detail.title}}"  hide-nav-bar="true" >
   <link ng-href="{{detail.css_link}}" rel="stylesheet" type="text/css">
+
   <ion-content>
-    <div ng-bind-html="detail.news_body"></div>
+    <div class="image-container">
+      <div class="description">
+        {{detail.description}}
+      </div>
+      <img ng-src="{{detail.image}}" alt="" title="{{detail.title}}">
+    </div>
+    <div ng-bind-html="detail.news_body" style="margin-bottom: 35px;"></div>
   </ion-content>
+  <ion-tabs class="tabs-positive" >
+
+    <ion-tab href="#/app/playlists" icon="ion-chevron-left" >
+
+    </ion-tab>
+    <ion-tab  icon="ion-chevron-down" >
+
+    </ion-tab>
+    <ion-tab  icon="ion-chatbox" badge="11">
+    </ion-tab>
+
+  </ion-tabs>
 </ion-view>
+

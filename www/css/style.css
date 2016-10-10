@@ -7,3 +7,39 @@
 .bar.bar-stable .title{
   color: #ffffff;
 }
+.menu-thumbnail{
+  width:25px;
+  height:25px;
+  vertical-align: bottom;
+}
+.bar-stable .back-text{
+  color: #ffffff;
+}
+.bar-stable .button.button-icon{
+  color: #ffffff;
+}
+.image-container{
+  float: left;
+  width:100%;
+  height:205px;
+  position: absolute;
+  overflow: hidden;
+
+}
+.image-container .description{
+  width:100%;
+  height:205px;
+  position: absolute;
+  color: white;
+  padding:140px 20px 0;
+  font-size:2em;
+  line-height: 1;
+  text-shadow: 0 0 4px rgba(0,0,0,0.2);
+  background: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.5));
+  float: left;
+}
+.image-container img{
+  float: left;
+  width:100%;
+
+}

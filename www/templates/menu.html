@@ -22,7 +22,7 @@
           日报集合
         </ion-item>
         <ion-item menu-close ng-href="#/app/themeSingle/{{theme.id}}" ng-repeat="theme in menus.themes">
-          <img ng-src="{{theme.thumbnail}}" alt="">
+          <img class="menu-left menu-thumbnail" ng-src="{{theme.thumbnail}}" alt="">
           {{theme.name}}
         </ion-item>
       </ion-list>

@@ -5,7 +5,9 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers','starter.services','angular-carousel'])
-
+  .config(function($ionicConfigProvider) {
+    $ionicConfigProvider.backButton.text('');
+  })
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -60,14 +62,10 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services','an
       }
     })
 
-  .state('app.single', {
-    url: '/playlists/:playlistId',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/playlist.html',
-        controller: 'PlaylistCtrl as detail'
-      }
-    }
+  .state('single', {
+    url: '/single/:playlistId',
+    templateUrl: 'templates/playlist.html',
+    controller: 'PlaylistCtrl as detail'
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/playlists');

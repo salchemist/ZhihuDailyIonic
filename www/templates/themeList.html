@@ -1,7 +1,7 @@
 <ion-view view-title="{{theme.title}}">
   <ion-content >
     <ion-list  >
-      <ion-item class="news_item"  ng-repeat="theme in theme.themesList" ng-href="#/app/playlists/{{theme.id}}">
+      <ion-item class="news_item"  ng-repeat="theme in theme.themesList" ng-href="#/single/{{theme.id}}">
         <div class="news_title">{{theme.title}}</div>
         <img  class="news_image" ng-if="theme.images!=undefined" ng-src="{{theme.images[0]}}" alt="">
       </ion-item>
