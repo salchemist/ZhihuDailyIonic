@@ -1,3 +1,2 @@
 # ZhihuDailyIonic
-ionic learning
-init with ionic cli："ionic start myApp sidemenu";
+使用inoic以及zhihudailypurify解析的知乎日报官方的api制作的app。
